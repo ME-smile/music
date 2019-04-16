@@ -6,10 +6,14 @@ import App from './App'
 import router from './router'
 import fastClick from 'fastclick'
 import 'stylus/index.styl'
+import VueLazyload from 'vue-lazyload'
 
 Vue.config.productionTip = false
 fastClick.attach(document.body)
 /* eslint-disable no-new */
+Vue.use(VueLazyload, {
+  loading: require('common/image/default.png')
+})
 new Vue({
   el: '#app',
   router,

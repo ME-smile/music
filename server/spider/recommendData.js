@@ -1,20 +1,20 @@
 const puppteer = require('puppeteer')
-
+const devices = require('puppeteer/DeviceDescriptors')
+const iPhone = devices['iPhone 6']
 // 自动执行函数
 ;(async () => {
-	console.log('Spider statrts running...')
 	let url = 'https://y.qq.com/m/index.html'
 	const browser = await puppteer.launch({	//launch()方法返回一个browser实例
 		args: ['--no-sandbox'],
 		dumpio: false
 	})
 	const page = await browser.newPage()
-	await page.setViewport({width: 375, height: 667})
+	await page.emulate(iPhone)
+	// await page.setViewport({width: 375, height: 667})
 	await page.goto(url, {
 		waitUntil: 'networkidle2' // 等待网络状态为空闲的时候才继续执行
 	})
 	await page.waitForSelector('.qui_slider')
-	console.log('statrt handling data')
 	let result = await page.evaluate(() => {
 		let data = [] // 声明一个数组存储数据
 		// 处理轮播图数据
@@ -29,7 +29,6 @@ const puppteer = require('puppeteer')
 		data.push(imgList)
 		// 处理歌单数据
 		let songItems = document.querySelectorAll('.mod_twocol_list.mod_twocol_list_special>.list_container>li')
-		console.log(songItems)
 		let songList = []
 		for (let item of songItems) {
 			let img_src = item.querySelector('img').src

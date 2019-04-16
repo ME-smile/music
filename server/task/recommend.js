@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 const swiperImg = mongoose.model('swiperImg')
 const songList = mongoose.model('songList')
 ;(async () => {
-	const script = resolve(__dirname, '../spider/banner')
+	const script = resolve(__dirname, '../spider/recommendData')
 	// 衍生一个新的 Node.js 进程，并通过建立 IPC 通信通道来调用指定的模块，该通道允许在父进程与子进程之间发送消息。
 	const child = cp.fork(script ,[])
 	let invoked = false
