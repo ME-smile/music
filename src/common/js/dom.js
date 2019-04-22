@@ -1,5 +1,5 @@
 export function addClass(el, className) {
-  if (hasClass(el, className)) {
+  if(hasClass(el,className)) {
     return
   }
 
@@ -7,6 +7,7 @@ export function addClass(el, className) {
   newClass.push(className)
   el.className = newClass.join(' ')
 }
+
 
 export function hasClass(el, className) {
   let reg = new RegExp('(^|\\s)' + className + '(\\s|$)')
@@ -35,7 +36,7 @@ let vendor = (() => {
   }
 
   for (let key in transformNames) {
-    if (elementStyle[transformNames[key]] !== undefined) {
+    if(elementStyle[transformNames[key]] !== undefined) {
       return key
     }
   }

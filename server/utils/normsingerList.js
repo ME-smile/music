@@ -48,5 +48,4 @@ function _normalizeSinger(list) {
     return hot.concat(ret)
   }
 
-
 module.exports= _normalizeSinger

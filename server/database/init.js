@@ -17,11 +17,11 @@ exports.connectdb = () => {
     if (process.env.NODE_ENV !== 'production') {
         mongoose.set('debug', true)
       }
-      mongoose.connect(db)
+      mongoose.connect(db, {useNewUrlParser: true})
       mongoose.connection.on('disconnect', () => {
         maxConnectTimes ++
         if (maxConnectTimes < 5) {
-          mongoose.connect(db)
+          mongoose.connect(db, {useNewUrlParser: true})
         } else {
           throw new Error('There is something wrong about mongodb')
         }
